@@ -22,8 +22,8 @@ Gem::Specification.new do |s|
 
   # Dependencies must be kept in sync with the checks in the extension side on workspace.ts
   s.add_dependency("language_server-protocol", "~> 3.17.0")
-  s.add_dependency("prism", ">= 1.2", "< 2.0")
-  s.add_dependency("rbs", ">= 3", "< 5")
+  s.add_dependency("prism", ">= 1.2", "< 2.0") # the current latest prism version, 1.9.0, still supports Ruby 2.7
+  s.add_dependency("rbs", ">= 3", "<= 3.1.3") # 3.1.3 is the last version supporting Ruby 2.6 and 2.7
 
-  s.required_ruby_version = ">= 3.0"
+  s.required_ruby_version = ">= 2.7"
 end

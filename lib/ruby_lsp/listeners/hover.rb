@@ -311,7 +311,7 @@ module RubyLsp
 
         first_method = methods.first #: as !nil
 
-        title = "#{message}#{first_method.decorated_parameters}"
+        title = +"#{message}#{first_method.decorated_parameters}" # Ruby 2.7 will view this as frozen string without the leading unary plus operator (Ruby 3.0+ won't freeze such strings)
         title << first_method.formatted_signatures
 
         if type.is_a?(TypeInferrer::GuessedType)

@@ -260,14 +260,14 @@ export class Ruby implements RubyInterface {
   // set
   private fetchRubyVersionInfo() {
     const [major, minor, _patch] = this.rubyVersion!.split(".").map(Number);
-
+/*
     if (major < 3) {
       throw new Error(
         `The Ruby LSP requires Ruby 3.0 or newer to run. This project is using ${this.rubyVersion}. \
         [See alternatives](https://github.com/Shopify/ruby-lsp/blob/main/vscode/README.md#ruby-version-requirement)`,
       );
     }
-
+*/
     // Starting with Ruby 3.3 the server enables YJIT itself
     if (this.yjitEnabled && major === 3 && minor === 2) {
       // RUBYOPT may be empty or it may contain bundler paths. In the second case, we must concat to avoid accidentally

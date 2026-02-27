@@ -1,6 +1,14 @@
 # typed: strict
 # frozen_string_literal: true
 
+class Symbol
+  unless method_defined?(:name) # to solve the issue in `RBSIndexer#handle_method` (see comment there)
+    def name # in Ruby 3+, this returns a frozen name (`.to_s` is not frozen)
+      self.to_s.-@ # or simply `-to_s`
+    end
+  end
+end
+
 module RubyIndexer
   class RBSIndexer
     HAS_UNTYPED_FUNCTION = !!defined?(RBS::Types::UntypedFunction) #: bool
@@ -102,7 +110,7 @@ module RubyIndexer
 
     #: (RBS::AST::Members::MethodDefinition member, Entry::Namespace owner) -> void
     def handle_method(member, owner)
-      name = member.name.name
+      name = member.name.name # this will raise a NoMethodError in Ruby < 3, where `Symbol#name` is not defined; see monkey-patching at the top
       uri = URI::Generic.from_path(path: member.location.buffer.name.to_s)
       location = to_ruby_indexer_location(member.location)
       comments = comments_to_string(member)

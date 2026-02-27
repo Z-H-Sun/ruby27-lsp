@@ -288,22 +288,22 @@ module RubyLsp
     end
 
     #: -> bool
-    def ignore? = @level == :ignore
+    def ignore? ; return @level == :ignore ; end
 
     #: -> bool
-    def false? = @level == :false
+    def false? ; return @level == :false ; end
 
     #: -> bool
-    def true? = @level == :true
+    def true? ; return @level == :true ; end
 
     #: -> bool
-    def strict? = @level == :strict
+    def strict? ; return @level == :strict ; end
 
     #: -> bool
-    def none? = @level == :none
+    def none? ; return @level == :none ; end
 
     #: -> bool
-    def true_or_higher? = @level == :true || @level == :strict
+    def true_or_higher? ; return @level == :true || @level == :strict ; end
   end
 
   # Reads JSON RPC messages from the given IO in a loop

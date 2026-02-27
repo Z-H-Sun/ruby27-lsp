@@ -103,7 +103,7 @@ module RubyLsp
         comment = @lines_to_comments[node.location.start_line - 1]
         return unless comment
 
-        match = comment.location.slice.match(%r{(source://.*#\d+|pkg:gem/.*#.*)$})
+        match = comment.location.slice.scrub.match(%r{(source://.*#\d+|pkg:gem/.*#.*)$}) # add .scrub to avoid "invalid byte sequence in UTF-8" exception
         return unless match
 
         uri_string = match[0] #: as !nil
