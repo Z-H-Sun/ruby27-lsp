@@ -183,14 +183,14 @@ export class RubyLsp {
       this.workspacesBeingLaunched.delete(workspaceFolder.index);
       return;
     }
-
+/*  // NO THANK YOU
     // If no lockfile exists and we're activating lazily (if the user opened a Ruby file inside a workspace we hadn't
     // activated before), then we start the language server, but we warn the user that they may be missing multi-root
     // workspace configuration
     if (customBundleGemfile.length === 0 && !lockfileExists) {
       await this.showStandaloneWarning(workspaceFolder.uri.fsPath);
     }
-
+*/
     const workspace = new Workspace(
       this.context,
       workspaceFolder,

@@ -173,7 +173,7 @@ module RubyLsp
         ruby_lsp_entry << ", github: \"Shopify/ruby-lsp\", branch: \"#{@branch}\"" if @branch
         parts << ruby_lsp_entry
       end
-
+=begin # NO THANK YOU
       unless @dependencies["debug"]
         # The `mri` platform excludes Windows. We want to install the debug gem only on MRI for any operating system,
         # but that constraint doesn't yet exist in Bundler. On Windows, we are manually checking if the engine is MRI
@@ -183,7 +183,7 @@ module RubyLsp
           'gem "debug", require: false, group: :development, platforms: :mri'
         end
       end
-
+=end
       if @rails_app && !@dependencies["ruby-lsp-rails"]
         parts << 'gem "ruby-lsp-rails", require: false, group: :development'
       end
@@ -348,6 +348,7 @@ module RubyLsp
 
     #: (Hash[String, String] env) -> Hash[String, String]
     def run_bundle_install_through_command(env)
+=begin # NO THANK YOU
       # If the gems in GEMS_TO_UPDATE (and potentially `ruby-lsp-rails`) are already in the Gemfile, then we shouldn't
       # try to upgrade them or else we'll produce undesired source control changes. If the composed bundle was just
       # created and any of those gems weren't a part of the Gemfile, then we need to run `bundle install` for the first
@@ -397,7 +398,7 @@ module RubyLsp
         $stderr.puts("Ruby LSP> Running bundle install failed. Trying to re-generate the composed bundle from scratch")
         return setup!
       end
-
+=end
       env
     end
 
