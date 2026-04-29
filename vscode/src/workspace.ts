@@ -126,7 +126,7 @@ export class Workspace implements WorkspaceInterface {
 
       return;
     }
-
+/* NO THANK YOU
     try {
       await this.installOrUpdateServer(false);
     } catch (error: any) {
@@ -138,7 +138,7 @@ export class Workspace implements WorkspaceInterface {
 
       return;
     }
-
+*/
     // The `start` method can be invoked through commands - even if there's an LSP client already running. We need to
     // ensure that the existing client for this workspace has been stopped and disposed of before we create a new one
     if (this.lspClient) {
